@@ -1,0 +1,30 @@
+{
+    "operations": [
+        {"type": "transfer", "data": {"from": 1, "to": 2, "amount": 200}},
+        {"type": "transfer", "data": {"from": 3, "to": 4, "amount": 200}},
+        {"type": "transfer", "data": {"from": 5, "to": 6, "amount": 100}},
+        {"type": "transfer", "data": {"from": 7, "to": 8, "amount": 300}},
+        {"type": "deposit", "data": {"client": 9, "amount": 300}},
+        {"type": "deposit", "data": {"client": 1, "amount": 300}},
+        {"type": "deposit", "data": {"client": 5, "amount": 200}},
+        {"type": "deposit", "data": {"client": 8, "amount": 400}},
+        {"type": "withdraw", "data": {"client": 2, "amount": 100}},
+        {"type": "withdraw", "data": {"client": 3, "amount": 100}},
+        {"type": "withdraw", "data": {"client": 4, "amount": 50}},
+        {"type": "withdraw", "data": {"client": 7, "amount": 200}},
+        {"type": "transfer", "data": {"from": 2, "to": 3, "amount": 200}},
+        {"type": "transfer", "data": {"from": 4, "to": 5, "amount": 200}},
+        {"type": "transfer", "data": {"from": 6, "to": 7, "amount": 100}},
+        {"type": "transfer", "data": {"from": 8, "to": 9, "amount": 300}},
+        {"type": "transfer", "data": {"from": 9, "to": 1, "amount": 300}},
+        {"type": "deposit", "data": {"client": 1, "amount": 300}},
+        {"type": "deposit", "data": {"client": 2, "amount": 300}},
+        {"type": "deposit", "data": {"client": 3, "amount": 200}},
+        {"type": "deposit", "data": {"client": 4, "amount": 400}},
+        {"type": "withdraw", "data": {"client": 5, "amount": 100}},
+        {"type": "withdraw", "data": {"client": 6, "amount": 100}},
+        {"type": "withdraw", "data": {"client": 7, "amount": 50}},
+        {"type": "withdraw", "data": {"client": 8, "amount": 200}},
+        {"type": "withdraw", "data": {"client": 9, "amount": 200}}
+    ]
+}

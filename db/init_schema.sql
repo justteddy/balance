@@ -1,0 +1,16 @@
+CREATE DATABASE  IF NOT EXISTS `balance` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `balance`;
+
+DROP TABLE IF EXISTS `balance`;
+CREATE TABLE `balance` (
+  `id` tinyint(5) NOT NULL AUTO_INCREMENT,
+  `amount` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `balance`
+--
+LOCK TABLES `balance` WRITE;
+INSERT INTO `balance` VALUES (1,1000),(2,1000),(3,1000),(4,1000),(5,1000),(6,1000),(7,1000),(8,1000),(9,1000);
+UNLOCK TABLES;
