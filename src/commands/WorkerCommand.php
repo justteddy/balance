@@ -25,6 +25,7 @@ class WorkerCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $this->checkMysqlIsReady($output);
         $timeout      = (int)$input->getOption('timeout');
         $workersCount = (int)$input->getOption('count');
 
@@ -40,5 +41,36 @@ class WorkerCommand extends Command
         }
 
         $wp->waitForAllWorkers();
+    }
+
+    /**
+     * @link https://hub.docker.com/_/mysql/
+     * No connections until MySQL init completes
+     * If there is no database initialized when the container starts, then a default database will be created.
+     * While this is the expected * behavior, this means that it will not accept incoming connections until such
+     * initialization completes. This may cause issues when using automation tools, such as docker-compose, which
+     * start several containers simultaneously.
+     */
+    protected function checkMysqlIsReady($output)
+    {
+        $tries = 0;
+        while ($tries < 3) {
+            try {
+                $tries++;
+                $connector = new Connector(
+                    Conf::getInstant()->getParam('db_dsn'),
+                    Conf::getInstant()->getParam('db_user'),
+                    Conf::getInstant()->getParam('db_pass')
+                );
+                $connector->close();
+                unset($connector);
+                return true;
+            } catch (\Exception $e) {
+                $output->writeln("waiting for mysql starts");
+                sleep(2);
+                continue;
+            }
+        }
+        return false;
     }
 }
