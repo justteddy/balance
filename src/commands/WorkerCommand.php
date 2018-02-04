@@ -50,11 +50,13 @@ class WorkerCommand extends Command
      * While this is the expected * behavior, this means that it will not accept incoming connections until such
      * initialization completes. This may cause issues when using automation tools, such as docker-compose, which
      * start several containers simultaneously.
+     * When mysql container is started for the first time, /docker-entrypoint-initdb.d/init_schema.sql is running.
+     * It cause issue.
      */
     protected function checkMysqlIsReady($output)
     {
         $tries = 0;
-        while ($tries < 3) {
+        while ($tries < 5) {
             try {
                 $tries++;
                 $connector = new Connector(
@@ -67,7 +69,7 @@ class WorkerCommand extends Command
                 return true;
             } catch (\Exception $e) {
                 $output->writeln("waiting for mysql starts");
-                sleep(2);
+                sleep(3);
                 continue;
             }
         }
