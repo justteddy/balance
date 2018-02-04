@@ -2,24 +2,31 @@ version: "3.2"
 services:
 
   phpclient:
-    build: .
+    build:
+      context: .
+      dockerfile: /docker/php/Dockerfile
     command: ./balance client -vvv
     depends_on:
-      - mysql
       - gearman
-      - phpworker
+      - mysql
 
   phpworker:
-    build: .
-    command: ./balance worker -vvv
+    build:
+      context: .
+      dockerfile: /docker/php/Dockerfile
     depends_on:
-      - mysql
       - gearman
+      - mysql
+      - phpclient
 
   gearman:
     image: artefactual/gearmand:1.1.17-alpine
+    logging:
+      driver: "none"
     ports:
       - "3000:4730"
+    depends_on:
+      - mysql
     restart: always
 
   mysql:
@@ -28,6 +35,8 @@ services:
       - "4000:3306"
     volumes:
       - ./db/init_schema.sql:/docker-entrypoint-initdb.d/init_schema.sql
+    logging:
+      driver: "none"
     environment:
       MYSQL_ROOT_PASSWORD: 123
     restart: always

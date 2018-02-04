@@ -17,3 +17,5 @@ RUN apt-get update \
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin/ --filename=composer
 RUN composer install --prefer-dist --no-interaction
+
+CMD ["/app/balance", "worker", "-vvv"]
