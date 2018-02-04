@@ -1,0 +1,11 @@
+{
+    "db_dsn": "mysql:host=mysql;dbname=balance;charset=UTF8",
+    "db_user": "root",
+    "db_pass": "123",
+    "gearman_server": "gearman",
+    "gearman_port": 4730,
+    "example_operations_file": "operations.json",
+    "listener_timeout": 200,
+    "worker_timeout": 200,
+    "worker_count": 10
+}

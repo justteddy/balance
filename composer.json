@@ -1,0 +1,23 @@
+{
+    "name": "justteddy/balance",
+    "description": "multiworker balance microservice",
+    "type": "project",
+    "require": {
+        "php": ">=7.1",
+        "symfony/console": "4.0.4",
+        "qxsch/worker-pool": "1.5.2",
+        "psr/log": "^1.0.2"
+    },
+    "authors": [
+        {
+            "name": "justteddy",
+            "email": "rekzar7@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "balance\\": "src/"
+        }
+    },
+    "minimum-stability": "dev"
+}
